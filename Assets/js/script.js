@@ -1,24 +1,22 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var hour = dayjs().hour();
+
+// var hour = dayjs().hour();
 var today = dayjs();
 $("#currentDay").text(today.format("dddd, MMMM D, YYYY"));
-var hourOfDayId = [
-  "hour-9",
-  "hour-10",
-  "hour-11",
-  "hour-12",
-  "hour-1",
-  "hour-2",
-  "hour-3",
-  "hour-4",
-  "hour-5",
-]; // I need to make a for loop to iterate through within an if statement to determine which our of the day we are in.
-if (hourOfDayId === hour) {
-}
 
-$(function () {
+// I need to make a for loop to iterate through within an if statement to determine which our of the day we are in.
+// // if (hourOfDayId === hour) {
+// }
+
+$(function (currentTime) {
+  var timeOfDay = $(".time-block");
+  for (var i = 0; i < timeOfDay.length; i++) {
+    var parsedHour = parseInt(timeOfDay.split("#")[1]);
+  }
+
+  console.log(parsedHour);
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the

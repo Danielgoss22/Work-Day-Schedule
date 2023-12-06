@@ -4,55 +4,41 @@ var elementId = timeBlock.attr("id");
 var today = dayjs();
 $("#currentDay").text(today.format("dddd, MMMM D, YYYY"));
 
-// I need to make a for loop to iterate through within an if statement to determine which hour of the day we are in.
-// // if (hourOfDayId === hour) {
-// }
-
-// $(function () {
-//   var timeNow = parseInt(dayjs().format("H"));
-//   var timeBlock = $(".time-block");
-//   timeBlock.each(function (index) {
-//     var colorTime = index + 9;
-//     if (timeNow === colorTime) {
-//       $(this).addClass("present");
-//     } else if (timeNow > colorTime) {
-//       $(this).addClass("past");
-//     } else if (timeNow === colorTime) {
-//       $(this).addClass("future");
-//     }
-//   });
-// timeBlock.forEach((element) => {});
-
-// for (var i = 0; i < timeOfDay.length; i++) {
-//   var parsedHour = parseInt(timeOfDay.split("-")[1]);
-// }
-$(function () {
+function hourColor() {
   var timeNow = parseInt(dayjs().format("H"));
 
-  var parsedId = parseInt(elementId.split("-")[1]);
-  for (var i = 0; i < parsedId.length; i++) {
-    if (timeNow === parsedId) {
+  $(".time-block").each(function () {
+    var parsedId = parseInt($(this).attr("id").split("-")[1]);
+
+    if (parsedId === timeNow) {
+      $(this).removeClass("future");
+      $(this).removeClass("past");
       $(this).addClass("present");
-    } else if (timeNow > parsedId) {
+    } else if (parsedId > timeNow) {
+      $(this).removeClass("present");
+      $(this).removeClass("past");
       $(this).addClass("future");
-    } else if (timeNow < parsedId) {
+    } else {
+      $(this).removeClass("present");
+      $(this).removeClass("future");
       $(this).addClass("past");
     }
-  }
+  });
+}
+saveBtn.on("click", function () {
+  var time = $(this).parent().attr("id");
+  var userInput = $(this).siblings(".description").val();
+  console.log(time, userInput);
+  localStorage.setItem(time, userInput);
 });
-saveBtn.on("click", function (event) {
-  var userInput = parsedId.JSON.parse.localStorage.getItem(userInput.value);
-  var userSave = (event.target = $(this));
-});
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
-// TODO: Add a listener for click events on the save button. This code should
-// use the id in the containing time-block as a key to save the user input inlocal storage. HINT: What does `this` reference in the click listener function? How can DOM traversal be used to get the "hour-x" id of the time-block containing the button that was clicked? How might the id be useful when saving the description in local storage?
-//
-//
-//
-// TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements. HINT: How can the id attribute of each time-block be used to do this?
-//
+hourColor();
+
+$("#hour-9 .description").val(localStorage.getItem("hour-9"));
+$("#hour-10 .description").val(localStorage.getItem("hour-10"));
+$("#hour-11 .description").val(localStorage.getItem("hour-11"));
+$("#hour-12 .description").val(localStorage.getItem("hour-12"));
+$("#hour-13 .description").val(localStorage.getItem("hour-13"));
+$("#hour-14 .description").val(localStorage.getItem("hour-14"));
+$("#hour-15 .description").val(localStorage.getItem("hour-15"));
+$("#hour-16 .description").val(localStorage.getItem("hour-16"));
+$("#hour-17 .description").val(localStorage.getItem("hour-17"));

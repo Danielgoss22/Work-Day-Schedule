@@ -12,8 +12,7 @@
 
 ## Screenshot
 
-...md
-![Alt text](assets/images/calendar-screenshot.jpg)
+![Alt text](Assets/images/calendar-screenshot.jpg)
 
 ## Deployed Application
 
